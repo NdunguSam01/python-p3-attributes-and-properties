@@ -1,5 +1,3 @@
-#!/usr/bin/env python3
-
 APPROVED_JOBS = [
     "Admin",
     "Customer Service",
@@ -16,32 +14,24 @@ APPROVED_JOBS = [
 ]
 
 class Person:
-    def __init__(self, name, job):
-        self.name=name.title()
-        self.job=job
-
+    def __init__ (self,name="Guido",job="Sales"):
+        self._job = None
+        self._name = None
+        self.name = name
+        self.job = job
     def get_name(self):
-        return self._name
-    
-    def set_name(self, name):
-        if type(name) == str and len(name) <= 25:
-            self._name=name
+        return self._name.title()
+    def set_name(self,name):
+        if type(name)== str and 1<= len(name)<=25:
+            self._name = name
         else:
-            print("Name must be string under 25 characters.")
-
+            print("Name must be string between 1 and 25 characters.")
+    name = property(get_name, set_name)
     def get_job(self):
         return self._job
-    
-    def set_job(self, job):
+    def set_job(self,job):
         if job in APPROVED_JOBS:
-            self._job=job
+            self._job = job
         else:
             print("Job must be in list of approved jobs.")
-            self._job="N/A"
-
-    name=property(get_name, set_name)
-    job=property(get_job, set_job)
-            
-Samuel=Person("muigai","test")
-print(Samuel.name)
-print(Samuel.job)
+    job = property(get_job, set_job)
